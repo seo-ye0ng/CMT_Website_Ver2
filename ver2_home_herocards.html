@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMT 정보통신 | Achieve Better, Faster Business Outcomes</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<style>
+  :root {
+    --brand: #20409a;
+    --brand-light: #4a6ec7;
+    --brand-dark: #16306d;
+    --brand-soft: #e8edf9;
+    --ink: #0e1730;
+    --ink-2: #41496a;
+    --ink-3: #6b7390;
+    --line: #e6e9f2;
+    --bg: #f4f6fc;
+    --white: #ffffff;
+    --radius: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  ul { list-style: none; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ===== Header ===== */
+  header {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    max-width: 1320px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    padding: 14px 28px;
+    box-shadow: 0 8px 32px rgba(32, 64, 154, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    box-shadow: 0 4px 12px rgba(32, 64, 154, 0.25);
+  }
+
+  nav > ul {
+    display: flex;
+    gap: 4px;
+  }
+
+  nav > ul > li { position: relative; }
+
+  nav .nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  nav .nav-trigger:hover, nav li:hover > .nav-trigger {
+    color: var(--brand);
+    background: var(--brand-soft);
+  }
+
+  .has-submenu > .nav-trigger::after,
+  .has-megamenu > .nav-trigger::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    margin-top: -4px;
+    transition: transform 0.2s ease;
+  }
+
+  .has-submenu:hover > .nav-trigger::after,
+  .has-megamenu:hover > .nav-trigger::after {
+    transform: rotate(225deg) translate(-1px, -1px);
+    margin-top: 2px;
+  }
+
+  /* Simple dropdown */
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: white;
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 200px;
+    box-shadow: 0 16px 48px rgba(14, 23, 48, 0.12), 0 2px 8px rgba(14, 23, 48, 0.06);
+    border: 1px solid var(--line);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s ease;
+  }
+
+  .has-submenu:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--ink-2);
+    transition: all 0.2s ease;
+  }
+
+  .dropdown a:hover {
+    background: var(--brand-soft);
+    color: var(--brand);
+  }
+
+  .dropdown a .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--brand-light);
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .dropdown a:hover .dot { opacity: 1; }
+
+  /* Megamenu (Services) */
+  .megamenu-wrap {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    width: calc(100% - 48px);
+    max-width: 1200px;
+    background: white;
+    border-radius: 24px;
+    padding: 32px 36px;
+    box-shadow: 0 24px 60px rgba(14, 23, 48, 0.15), 0 4px 12px rgba(14, 23, 48, 0.06);
+    border: 1px solid var(--line);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 99;
+  }
+
+  .has-megamenu:hover .megamenu-wrap {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* bridge between trigger & megamenu to keep hover */
+  .has-megamenu::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -100px;
+    right: -100px;
+    height: 24px;
+  }
+
+  .megamenu-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+
+  .megamenu-col h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brand);
+    padding: 8px 12px 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+    letter-spacing: -0.01em;
+  }
+
+  .megamenu-col a {
+    display: block;
+    padding: 9px 12px;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    border-radius: 8px;
+    transition: all 0.18s ease;
+  }
+
+  .megamenu-col a:hover {
+    background: var(--brand-soft);
+    color: var(--brand);
+    transform: translateX(2px);
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--ink);
+    color: white;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .cta-btn:hover {
+    background: var(--brand);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(32, 64, 154, 0.3);
+  }
+
+  .cta-btn::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+
+  .cta-btn:hover::after { transform: translate(3px, 0); }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: min(100vh, 800px);
+    padding: 140px 0 80px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at top right, #c8d4f0 0%, transparent 50%),
+      radial-gradient(ellipse at bottom left, #d4def0 0%, transparent 55%),
+      linear-gradient(180deg, #eef1f9 0%, #e1e8f5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(32, 64, 154, 0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(32, 64, 154, 0.18) 0%, transparent 60%);
+    top: -200px;
+    right: -200px;
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    text-align: center;
+    max-width: 1000px;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 28px;
+    color: var(--brand);
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.8s 0.05s ease both;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--brand);
+    vertical-align: middle;
+    margin-right: 12px;
+    margin-bottom: 4px;
+  }
+  .hero-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--brand);
+    vertical-align: middle;
+    margin-left: 12px;
+    margin-bottom: 4px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 6.5vw, 84px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 780px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+    color: white;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(32, 64, 154, 0.35);
+    transition: all 0.25s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(32, 64, 154, 0.45);
+  }
+
+  .btn-primary svg {
+    width: 18px; height: 18px;
+    transition: transform 0.25s ease;
+  }
+
+  .btn-primary:hover svg { transform: translateY(2px); }
+
+  /* Feature cards over hero */
+  .feature-grid {
+    position: relative;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    animation: fadeUp 0.9s 0.6s ease both;
+  }
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 22px 20px;
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(32, 64, 154, 0.04) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(32, 64, 154, 0.2);
+    box-shadow: 0 18px 40px rgba(32, 64, 154, 0.12);
+  }
+
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 16px rgba(32, 64, 154, 0.25);
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-icon svg { width: 22px; height: 22px; }
+
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card p {
+    font-size: 13.5px;
+    color: var(--ink-3);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--brand);
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-link::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+
+  .feature-card:hover .feature-link::after { transform: translateX(3px); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Section base ===== */
+  section { padding: 120px 0; position: relative; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .section-title .accent {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--ink-2);
+    line-height: 1.7;
+    max-width: 580px;
+  }
+
+  /* ===== Stats ===== */
+  .stats {
+    background: var(--bg);
+    padding: 80px 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .stat {
+    text-align: left;
+    padding-left: 24px;
+    border-left: 2px solid var(--brand);
+  }
+
+  .stat-num {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .stat-num .unit {
+    font-size: 28px;
+    color: var(--brand);
+    margin-left: 2px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+
+  /* ===== Services ===== */
+  .services { background: var(--white); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+
+  .services-header .section-desc {
+    padding-top: 52px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    background: linear-gradient(180deg, var(--white) 0%, #fafbfd 100%);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand) 0%, var(--brand-light) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--brand-light);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(32, 64, 154, 0.12);
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: 0.12em;
+    margin-bottom: 20px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover .service-icon {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .service-icon svg { width: 24px; height: 24px; }
+
+  .service-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .service-card > p {
+    font-size: 14px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .service-tags span {
+    padding: 4px 10px;
+    background: var(--bg);
+    color: var(--ink-2);
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--brand);
+    font-weight: 600;
+    margin-top: auto;
+  }
+
+  .service-link::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+
+  .service-card:hover .service-link::after { transform: translateX(4px); }
+
+  /* ===== Security Solutions (Carousel) ===== */
+  .sec-sol {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sec-sol::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(32, 64, 154, 0.08) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    pointer-events: none;
+  }
+
+  .carousel {
+    position: relative;
+    margin-top: 60px;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 4px 12px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .carousel-track::-webkit-scrollbar { display: none; }
+
+  .sol-card {
+    flex: 0 0 calc((100% - 48px) / 4);
+    scroll-snap-align: start;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+  }
+
+  .sol-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(32, 64, 154, 0.18);
+    border-color: transparent;
+  }
+
+  .sol-card-head {
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+    padding: 24px 22px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 110px;
+  }
+
+  .sol-card-head::before {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+    top: -70px;
+    right: -70px;
+    transition: transform 0.5s ease;
+  }
+
+  .sol-card:hover .sol-card-head::before {
+    transform: scale(1.4);
+  }
+
+  .sol-brand {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: white;
+    position: relative;
+    z-index: 1;
+    line-height: 1.1;
+  }
+
+  .sol-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .sol-body {
+    padding: 22px 22px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sol-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .sol-card p {
+    font-size: 13.5px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .sol-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--brand);
+    font-weight: 600;
+    margin-top: 18px;
+  }
+
+  .sol-link::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+
+  .sol-card:hover .sol-link::after {
+    transform: translateX(4px);
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 20px rgba(14,23,48,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.25s ease;
+    color: var(--ink);
+  }
+
+  .carousel-btn:hover:not(:disabled) {
+    background: var(--brand);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 12px 28px rgba(32,64,154,0.3);
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .carousel-btn.prev { left: -18px; }
+  .carousel-btn.next { right: -18px; }
+
+  .carousel-btn svg { width: 20px; height: 20px; }
+
+  /* ===== Partners (Marquee) ===== */
+  .partners {
+    padding: 80px 0 80px;
+    background: var(--white);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .partners-title {
+    font-size: 14px;
+    color: var(--ink-3);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+  }
+
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 10%, black 90%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 64px;
+    align-items: center;
+    width: max-content;
+    animation: scroll-left 40s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink-3);
+    opacity: 0.45;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .marquee-item:hover {
+    opacity: 1;
+    color: var(--brand);
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== CTA section ===== */
+  .cta-section { padding: 120px 0; }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+    border-radius: 32px;
+    padding: 80px 64px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    top: -200px;
+    right: -200px;
+  }
+
+  .cta-box::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+  }
+
+  .cta-content { position: relative; z-index: 1; }
+
+  .cta-box h2 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .cta-box p {
+    font-size: 17px;
+    opacity: 0.85;
+    margin-bottom: 36px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: white;
+    color: var(--brand);
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+  .btn-white::after { content: '→'; transition: transform 0.2s ease; }
+  .btn-white:hover::after { transform: translateX(4px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 80px 0 32px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-brand .logo {
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    max-width: 320px;
+  }
+
+  .footer-contact {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-contact strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    margin-right: 8px;
+  }
+
+  .footer-col h4 {
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .footer-col ul li { margin-bottom: 10px; }
+
+  .footer-col ul li a {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: white; }
+
+  .footer-bottom {
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { color: rgba(255,255,255,0.5); }
+  .footer-legal a:hover { color: white; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1100px) {
+    nav { display: none; }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    .feature-grid { grid-template-columns: repeat(3, 1fr); }
+    .sol-card { flex: 0 0 calc((100% - 32px) / 3); }
+  }
+
+  @media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 720px) {
+    .container { padding: 0 20px; }
+    header { padding: 10px 16px; width: calc(100% - 24px); top: 12px; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .services-header .section-desc { padding-top: 0; }
+    .sol-card { flex: 0 0 calc((100% - 16px) / 2); }
+    .carousel-btn.prev { left: -10px; }
+    .carousel-btn.next { right: -10px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .cta-box { padding: 60px 28px; border-radius: 24px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .hero-eyebrow { font-size: 22px; }
+    .hero-eyebrow::before, .hero-eyebrow::after { width: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .sol-card { flex: 0 0 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">C</span>
+      <span>씨엠티정보통신</span>
+    </a>
+    <nav>
+      <ul>
+        <!-- 회사 소개 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">회사 소개</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>회사 개요</a>
+            <a href="#"><span class="dot"></span>회사 연혁</a>
+            <a href="#"><span class="dot"></span>CI</a>
+            <a href="#"><span class="dot"></span>인력 채용</a>
+            <a href="#"><span class="dot"></span>찾아오시는 길</a>
+          </div>
+        </li>
+
+        <!-- 보안 솔루션 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">보안 솔루션</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>Fortinet</a>
+            <a href="#"><span class="dot"></span>Juniper</a>
+            <a href="#"><span class="dot"></span>Radware</a>
+            <a href="#"><span class="dot"></span>Symantec</a>
+            <a href="#"><span class="dot"></span>Rapid7</a>
+            <a href="#"><span class="dot"></span>Arbor</a>
+            <a href="#"><span class="dot"></span>F5 Networks</a>
+            <a href="#"><span class="dot"></span>Tippingpoint</a>
+          </div>
+        </li>
+
+        <!-- 신사업 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">신사업</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>신사업 소개</a>
+            <a href="#"><span class="dot"></span>AI 솔루션</a>
+            <a href="#"><span class="dot"></span>Bigdata 솔루션</a>
+            <a href="#"><span class="dot"></span>Cloud 솔루션</a>
+            <a href="#"><span class="dot"></span>IT 보안솔루션</a>
+            <a href="#"><span class="dot"></span>OT 보안솔루션</a>
+          </div>
+        </li>
+
+        <!-- 서비스 (Megamenu) -->
+        <li class="has-megamenu">
+          <button class="nav-trigger">서비스</button>
+          <div class="megamenu-wrap">
+            <div class="megamenu-grid">
+              <div class="megamenu-col">
+                <h4>보안 관제</h4>
+                <a href="#">서비스 소개</a>
+                <a href="#">서비스 특징</a>
+                <a href="#">서비스 방법</a>
+                <a href="#">제공 서비스</a>
+              </div>
+              <div class="megamenu-col">
+                <h4>보안 컨설팅</h4>
+                <a href="#">보안 컨설팅 서비스 종류</a>
+                <a href="#">컨설팅 수행절차</a>
+                <a href="#">기술 취약점 진단</a>
+                <a href="#">모의해킹</a>
+                <a href="#">모바일 모의해킹</a>
+              </div>
+              <div class="megamenu-col">
+                <h4>클라우드 서비스</h4>
+                <a href="#">클라우드 서비스 소개</a>
+                <a href="#">컨설팅 서비스</a>
+                <a href="#">마이그레이션</a>
+                <a href="#">매니지드 서비스</a>
+                <a href="#">최적화 서비스</a>
+                <a href="#">보안 서비스</a>
+                <a href="#">주요 고객사</a>
+              </div>
+              <div class="megamenu-col">
+                <h4>보안 SI</h4>
+                <a href="#">서비스 소개</a>
+                <a href="#">서비스 특징</a>
+                <a href="#">서비스 분야</a>
+                <a href="#">서비스 방법론</a>
+                <a href="#">서비스 기대효과</a>
+              </div>
+              <div class="megamenu-col">
+                <h4>통합 유지보수</h4>
+                <a href="#">서비스 소개</a>
+                <a href="#">서비스 특징</a>
+                <a href="#">서비스 방법론</a>
+              </div>
+              <div class="megamenu-col">
+                <h4>AICC</h4>
+                <a href="#">AICC 소개</a>
+                <a href="#">SBC 솔루션</a>
+                <a href="#">Genesys Cloud</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li><button class="nav-trigger">성공사례</button></li>
+        <li><button class="nav-trigger">고객지원</button></li>
+      </ul>
+    </nav>
+    <a href="#" class="cta-btn">문의하기</a>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">미래를 위한 준비</div>
+      <h1>Achieve <span class="accent">Better, Faster</span><br>Business Outcomes.</h1>
+      <p>씨엠티정보통신은 더 나은, 더 빠른 성과를 위해 네트워크, 시스템 통합 및 보안 시스템에 이르기까지<br>고객의 요구사항을 충족하는 다양한 제품과 솔루션을 제공하고 있습니다.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn-primary">
+          회사 소개서 다운받기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M3.5 7l5.2 3M15.3 14l5.2 3M3.5 17l5.2-3M15.3 10l5.2-3"/></svg>
+          </div>
+          <h3>AI 솔루션</h3>
+          <p>머신러닝 기반 차세대 보안 분석</p>
+          <span class="feature-link">자세히</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>
+          </div>
+          <h3>Bigdata 솔루션</h3>
+          <p>대용량 데이터 수집·분석·시각화</p>
+          <span class="feature-link">자세히</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <h3>Cloud 솔루션</h3>
+          <p>하이브리드·멀티 클라우드 보안</p>
+          <span class="feature-link">자세히</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>IT 보안솔루션</h3>
+          <p>엔드포인트부터 네트워크까지 통합 보호</p>
+          <span class="feature-link">자세히</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>OT 보안솔루션</h3>
+          <p>스마트팩토리·산업 인프라 전용 보안</p>
+          <span class="feature-link">자세히</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats ===== -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">25<span class="unit">+</span></div>
+        <div class="stat-label">사업 운영 연차</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">500<span class="unit">+</span></div>
+        <div class="stat-label">엔터프라이즈 고객사</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">365<span class="unit">d</span></div>
+        <div class="stat-label">24시간 무중단 운영</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">99.9<span class="unit">%</span></div>
+        <div class="stat-label">서비스 가용성 SLA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services (uniform cards) ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-eyebrow">OUR SERVICES</div>
+        <h2 class="section-title">고객 환경에 최적화된<br><span class="accent">엔드-투-엔드 서비스</span></h2>
+      </div>
+      <p class="section-desc">기획·구축·운영까지 전 주기를 책임지는 CMT의 통합 서비스로 비즈니스 연속성을 보장합니다.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+        </div>
+        <h3>보안 관제</h3>
+        <p>365일 24시간 실시간 위협 탐지부터 사고 대응까지, 전문 SOC가 고객 자산을 안전하게 지킵니다.</p>
+        <div class="service-tags">
+          <span>SOC</span><span>실시간 탐지</span><span>침해 대응</span>
+        </div>
+        <span class="service-link">자세히 보기</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>보안 컨설팅</h3>
+        <p>인증·컴플라이언스·개인정보·취약점 진단까지, 고객 환경에 맞춘 보안 컨설팅을 제공합니다.</p>
+        <div class="service-tags">
+          <span>ISMS-P</span><span>진단</span><span>모의해킹</span>
+        </div>
+        <span class="service-link">자세히 보기</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.5-8.74A6 6 0 0 0 5 12a4 4 0 0 0 .5 7.97"/><path d="M12 12v9M8 17l4 4 4-4"/></svg>
+        </div>
+        <h3>클라우드 서비스</h3>
+        <p>퍼블릭·하이브리드 클라우드 도입부터 워크로드 마이그레이션까지 안전한 전환을 지원합니다.</p>
+        <div class="service-tags">
+          <span>AWS</span><span>Azure</span><span>NCP</span>
+        </div>
+        <span class="service-link">자세히 보기</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>보안 SI</h3>
+        <p>체계적인 보안시스템 설계와 최적의 정보보호 솔루션 구축을 통한 통합 보안 서비스를 제공합니다.</p>
+        <div class="service-tags">
+          <span>설계</span><span>구축</span><span>통합</span>
+        </div>
+        <span class="service-link">자세히 보기</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>통합 유지보수</h3>
+        <p>365일 24시간 무중단 IT 서비스를 제공하며, 단일 창구로 효율적인 유지관리를 지원합니다.</p>
+        <div class="service-tags">
+          <span>HW/SW</span><span>네트워크</span><span>장애 대응</span>
+        </div>
+        <span class="service-link">자세히 보기</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Security Solutions (Carousel) ===== -->
+<section class="sec-sol">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-eyebrow">SECURITY SOLUTIONS</div>
+        <h2 class="section-title">글로벌 리더와 함께하는<br><span class="accent">보안 솔루션 라인업</span></h2>
+      </div>
+      <p class="section-desc">차세대 방화벽부터 DDoS 방어, 침입 방지까지 — CMT가 검증한 글로벌 파트너의 보안 솔루션을 제공합니다.</p>
+    </div>
+
+    <div class="carousel">
+      <button class="carousel-btn prev" id="solPrev" aria-label="이전 솔루션">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="carousel-track" id="solTrack">
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">Fortinet</div>
+            <span class="sol-tag">NGFW</span>
+          </div>
+          <div class="sol-body">
+            <h3>차세대 방화벽 통합 보안</h3>
+            <p>NGFW와 통합 보안 플랫폼으로 엔드투엔드 위협 방어를 제공합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">Juniper</div>
+            <span class="sol-tag">NETWORK</span>
+          </div>
+          <div class="sol-body">
+            <h3>엔터프라이즈 네트워크 보안</h3>
+            <p>고성능 라우팅·스위칭과 결합된 네트워크 보안 솔루션을 제공합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">Radware</div>
+            <span class="sol-tag">APP/DDoS</span>
+          </div>
+          <div class="sol-body">
+            <h3>애플리케이션 보안·DDoS 방어</h3>
+            <p>WAF와 정교한 DDoS 방어로 웹·앱 서비스를 안정적으로 보호합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">Symantec</div>
+            <span class="sol-tag">ENDPOINT</span>
+          </div>
+          <div class="sol-body">
+            <h3>엔드포인트·데이터 보호</h3>
+            <p>디바이스부터 클라우드까지 데이터 유출을 통합적으로 방지합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">Rapid7</div>
+            <span class="sol-tag">VM/XDR</span>
+          </div>
+          <div class="sol-body">
+            <h3>취약점 관리·위협 탐지</h3>
+            <p>전사 자산 가시성과 위협 탐지·대응을 단일 플랫폼에서 처리합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">Arbor</div>
+            <span class="sol-tag">DDoS</span>
+          </div>
+          <div class="sol-body">
+            <h3>통신사급 DDoS 방어</h3>
+            <p>대규모 트래픽 공격을 실시간으로 탐지·완화하는 전문 솔루션입니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">F5 Networks</div>
+            <span class="sol-tag">APP DELIVERY</span>
+          </div>
+          <div class="sol-body">
+            <h3>애플리케이션 보안·전달</h3>
+            <p>로드 밸런싱과 앱 보안을 결합해 서비스 가용성과 보안을 동시에 확보합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-head">
+            <div class="sol-brand">TippingPoint</div>
+            <span class="sol-tag">IPS</span>
+          </div>
+          <div class="sol-body">
+            <h3>차세대 침입 방지 시스템</h3>
+            <p>실시간 IPS로 네트워크 위협을 사전에 차단해 비즈니스 연속성을 보장합니다.</p>
+            <a href="#" class="sol-link">자세히 보기</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-btn next" id="solNext" aria-label="다음 솔루션">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Partners (Marquee) ===== -->
+<section class="partners">
+  <div class="container">
+    <div class="partners-title">— TRUSTED PARTNERS —</div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <!-- set 1 -->
+      <div class="marquee-item">FORTINET</div>
+      <div class="marquee-item">Juniper</div>
+      <div class="marquee-item">Radware</div>
+      <div class="marquee-item">Symantec</div>
+      <div class="marquee-item">Rapid7</div>
+      <div class="marquee-item">ARBOR</div>
+      <div class="marquee-item">F5 Networks</div>
+      <div class="marquee-item">TippingPoint</div>
+      <div class="marquee-item">veeam</div>
+      <div class="marquee-item">RSA</div>
+      <div class="marquee-item">PROCERA</div>
+      <div class="marquee-item">Palo Alto</div>
+      <!-- set 2 (duplicate for seamless loop) -->
+      <div class="marquee-item">FORTINET</div>
+      <div class="marquee-item">Juniper</div>
+      <div class="marquee-item">Radware</div>
+      <div class="marquee-item">Symantec</div>
+      <div class="marquee-item">Rapid7</div>
+      <div class="marquee-item">ARBOR</div>
+      <div class="marquee-item">F5 Networks</div>
+      <div class="marquee-item">TippingPoint</div>
+      <div class="marquee-item">veeam</div>
+      <div class="marquee-item">RSA</div>
+      <div class="marquee-item">PROCERA</div>
+      <div class="marquee-item">Palo Alto</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-content">
+        <h2>비즈니스의 다음 단계,<br>CMT와 함께 시작하세요.</h2>
+        <p>네트워크부터 보안, 클라우드 전환까지 25년 노하우로 고객의 디지털 여정을 함께 합니다.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn-white">무료 컨설팅 신청</a>
+          <a href="#" class="btn-outline">회사 소개서 다운로드</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-mark">C</span>
+      <span>씨엠티정보통신</span>
+        </div>
+        <p>더 나은, 더 빠른 비즈니스 성과를 위한 엔터프라이즈 네트워크·SI·보안 파트너</p>
+        <div class="footer-contact">
+          <div><strong>주소</strong>(04798) 서울시 성동구 성수이로22길 37, 803호</div>
+          <div><strong>Tel</strong>02-6011-1377 &nbsp; <strong>Fax</strong>02-463-1376</div>
+          <div><strong>E-mail</strong>adm@cmtinfo.co.kr</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>회사</h4>
+        <ul>
+          <li><a href="#">회사 소개</a></li>
+          <li><a href="#">CEO 메시지</a></li>
+          <li><a href="#">연혁</a></li>
+          <li><a href="#">오시는 길</a></li>
+          <li><a href="#">채용 정보</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>서비스</h4>
+        <ul>
+          <li><a href="#">보안 관제</a></li>
+          <li><a href="#">보안 컨설팅</a></li>
+          <li><a href="#">클라우드 서비스</a></li>
+          <li><a href="#">보안 SI</a></li>
+          <li><a href="#">통합 유지보수</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>고객지원</h4>
+        <ul>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">자료실</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">1:1 문의</a></li>
+          <li><a href="#">파트너 문의</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>COPYRIGHT © CMT 정보통신 ALL RIGHTS RESERVED. &nbsp; 사업자번호 : 215-87-14581</div>
+      <div class="footer-legal">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보 처리방침</a>
+        <a href="#">환경경영방침</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    const track = document.getElementById('solTrack');
+    const prevBtn = document.getElementById('solPrev');
+    const nextBtn = document.getElementById('solNext');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function step() {
+      const card = track.querySelector('.sol-card');
+      if (!card) return 0;
+      return card.offsetWidth + 16; // card width + gap
+    }
+
+    function updateBtns() {
+      const max = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 4;
+      nextBtn.disabled = track.scrollLeft >= max - 4;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateBtns);
+    });
+    window.addEventListener('resize', updateBtns);
+    updateBtns();
+  })();
+</script>
+
+</body>
+</html>
