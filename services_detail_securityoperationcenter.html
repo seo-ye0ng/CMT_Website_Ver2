@@ -73,7 +73,7 @@
     align-items: center;
     gap: 10px;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink);
     flex-shrink: 0;
   }
@@ -88,7 +88,7 @@
     justify-content: center;
     color: white;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 18px;
     letter-spacing: -0.02em;
     box-shadow: 0 4px 12px rgba(32, 64, 154, 0.25);
   }
@@ -105,7 +105,7 @@
     align-items: center;
     gap: 6px;
     padding: 10px 18px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--ink-2);
     border-radius: 999px;
@@ -172,7 +172,7 @@
     gap: 10px;
     padding: 11px 14px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink-2);
     transition: all 0.2s ease;
   }
@@ -236,7 +236,7 @@
   }
 
   .megamenu-col h4 {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--brand);
     padding: 8px 12px 12px;
@@ -248,7 +248,7 @@
   .megamenu-col a {
     display: block;
     padding: 9px 12px;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink-2);
     border-radius: 8px;
     transition: all 0.18s ease;
@@ -274,7 +274,7 @@
     background: var(--ink);
     color: white;
     border-radius: 999px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     transition: all 0.2s ease;
     flex-shrink: 0;
@@ -367,7 +367,7 @@
   .breadcrumb .sep {
     color: var(--ink-3);
     opacity: 0.5;
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .breadcrumb .current {
@@ -396,7 +396,7 @@
   }
 
   .sub-hero p.lead {
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink-2);
     line-height: 1.65;
   }
@@ -421,7 +421,7 @@
 
   .page-tabs a {
     padding: 10px 22px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--ink-2);
     border-radius: 999px;
@@ -455,8 +455,8 @@
 
   /* Intro block */
   .intro-card {
-    background: linear-gradient(135deg, var(--brand-soft) 0%, #f4f7fd 100%);
-    border: 1px solid rgba(32, 64, 154, 0.08);
+    background: var(--white);
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 32px 36px;
     margin-bottom: 80px;
@@ -464,19 +464,8 @@
     overflow: hidden;
   }
 
-  .intro-card::before {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(32, 64, 154, 0.06) 0%, transparent 70%);
-    top: -80px;
-    right: -50px;
-  }
-
   .intro-card p {
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink-2);
     line-height: 1.8;
     position: relative;
@@ -599,7 +588,7 @@
   }
 
   .diagram-core .core-label {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.18em;
     opacity: 0.75;
@@ -700,29 +689,7 @@
     padding: 36px 32px;
     position: relative;
     overflow: hidden;
-    transition: all 0.35s ease;
   }
-
-  .req-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--brand) 0%, var(--brand-light) 100%);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  .req-card:hover {
-    border-color: var(--brand-light);
-    transform: translateY(-4px);
-    box-shadow: 0 24px 48px rgba(32, 64, 154, 0.1);
-  }
-
-  .req-card:hover::after { transform: scaleX(1); }
 
   .req-head {
     display: flex;
@@ -743,13 +710,6 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: all 0.35s ease;
-  }
-
-  .req-card:hover .req-ic {
-    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-    color: white;
-    transform: rotate(-6deg) scale(1.05);
   }
 
   .req-ic svg { width: 22px; height: 22px; }
@@ -784,7 +744,7 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink-2);
     line-height: 1.55;
   }
@@ -797,12 +757,6 @@
     background: var(--brand-light);
     margin-top: 9px;
     flex-shrink: 0;
-    transition: all 0.25s ease;
-  }
-
-  .req-card:hover .req-list li::before {
-    background: var(--brand);
-    transform: scale(1.3);
   }
 
   /* ===== Sidebar (sticky contact) ===== */
@@ -860,7 +814,7 @@
   }
 
   .side-card-title {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-bottom: 4px;
@@ -869,7 +823,7 @@
   }
 
   .side-card-desc {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.55;
     opacity: 0.78;
     position: relative;
@@ -918,14 +872,14 @@
   }
 
   .side-item-value {
-    font-size: 15px;
+    font-size: 18px;
     color: var(--brand);
     font-weight: 700;
     letter-spacing: -0.01em;
   }
 
   .side-item-value.email {
-    font-size: 15px;
+    font-size: 18px;
     word-break: break-all;
   }
 
@@ -939,7 +893,7 @@
     background: var(--ink);
     color: white;
     border-radius: 999px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     transition: all 0.2s ease;
     width: 100%;
@@ -1027,7 +981,7 @@
     background: white;
     color: var(--brand);
     border-radius: 999px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     transition: all 0.2s ease;
   }
@@ -1045,7 +999,7 @@
     border: 1px solid rgba(255,255,255,0.3);
     color: white;
     border-radius: 999px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     transition: all 0.2s ease;
   }
@@ -1073,7 +1027,7 @@
   }
 
   .footer-brand p {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.65;
     margin-bottom: 24px;
     max-width: 320px;
@@ -1092,7 +1046,7 @@
   }
 
   .footer-col h4 {
-    font-size: 15px;
+    font-size: 18px;
     color: white;
     font-weight: 600;
     margin-bottom: 18px;
@@ -1101,7 +1055,7 @@
   .footer-col ul li { margin-bottom: 10px; }
 
   .footer-col ul li a {
-    font-size: 15px;
+    font-size: 18px;
     color: rgba(255,255,255,0.6);
     transition: color 0.2s;
   }
@@ -1145,11 +1099,11 @@
     .sub-hero { padding: 130px 0 50px; }
     .page-tabs-section { padding: 28px 0; }
     .page-tabs { width: 100%; justify-content: space-between; }
-    .page-tabs a { padding: 9px 14px; font-size: 15px; }
+    .page-tabs a { padding: 9px 14px; font-size: 18px; }
     .req-grid { grid-template-columns: 1fr; }
     .intro-card { padding: 24px 22px; }
     .diagram-wrap { margin-bottom: 80px; }
-    .petal-text { font-size: 15px; }
+    .petal-text { font-size: 18px; }
     .cta-box { padding: 60px 28px; border-radius: 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; }
   }
@@ -1464,22 +1418,6 @@
         <a href="#" class="side-quick-cta">상담 신청하기</a>
       </aside>
 
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-box">
-      <div class="cta-content">
-        <h2>전문가의 24시간 관제,<br>지금 바로 시작하세요.</h2>
-        <p>CMT 전문 SOC 인력이 실시간으로 위협을 탐지하고 사고를 대응합니다. 무료 보안 진단부터 시작해보세요.</p>
-        <div class="cta-actions">
-          <a href="#" class="btn-white">무료 보안 진단 신청</a>
-          <a href="#" class="btn-outline">서비스 소개서 다운로드</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
