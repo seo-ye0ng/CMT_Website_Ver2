@@ -112,6 +112,10 @@
     border-radius: 999px;
     transition: all 0.2s ease;
     white-space: nowrap;
+    line-height: 1;
+    box-sizing: border-box;
+    height: 36px;
+    text-decoration: none;
   }
 
   nav .nav-trigger:hover, nav li:hover > .nav-trigger {
@@ -620,6 +624,7 @@
     color: var(--ink-3);
     line-height: 1.6;
     margin-bottom: 18px;
+    flex: 1;
   }
 
   .service-tags {
@@ -727,7 +732,7 @@
   }
 
   .stage-card p {
-    font-size: 15px;
+    font-size: 18px;
     color: var(--ink-3);
     line-height: 1.6;
   }
@@ -1045,10 +1050,15 @@
 
   .footer-top {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
     padding-bottom: 60px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    align-items: start;
+  }
+
+  .footer-col {
+    min-width: 0;
   }
 
   .footer-brand .logo {
@@ -1177,12 +1187,12 @@
           <a href="services_detail_securityoperationcenter.html" class="nav-trigger">보안관제</a>
           <div class="dropdown">
             <a href="services_detail_securityoperationcenter.html"><span class="dot"></span>서비스 개요</a>
-            <a href="#"><span class="dot"></span>CMT EYES</a>
-            <a href="#"><span class="dot"></span>관제 방법론</a>
-            <a href="#"><span class="dot"></span>관제 서비스 범위</a>
-            <a href="#"><span class="dot"></span>관제 상품</a>
-            <a href="#"><span class="dot"></span>AI-SOC</a>
-            <a href="#"><span class="dot"></span>서비스 SLA</a>
+            <a href="services_detail_soc_cmteyes.html"><span class="dot"></span>CMT EYES</a>
+            <a href="services_detail_soc_methodology.html"><span class="dot"></span>관제 방법론</a>
+            <a href="services_detail_soc_scope.html"><span class="dot"></span>관제 서비스 범위</a>
+            <a href="services_detail_soc_products.html"><span class="dot"></span>관제 상품</a>
+            <a href="services_detail_soc_aisoc.html"><span class="dot"></span>AI-SOC</a>
+            <a href="services_detail_soc_sla.html"><span class="dot"></span>서비스 SLA</a>
           </div>
         </li>
 
@@ -1323,17 +1333,16 @@
         <div class="section-eyebrow">CORE CAPABILITIES</div>
         <h2 class="section-title">고객 문제 해결 중심의<br><span class="accent">5가지 핵심 역량</span></h2>
       </div>
-      <p class="section-desc">보안솔루션 구축부터 24x365 보안관제·시스템 통합·통합 유지보수·정보보호 컨설팅까지, CMT의 전문 역량으로 비즈니스 연속성을 보장합니다.</p>
+      <p class="section-desc">보안솔루션 구축부터 24x365 보안관제·시스템 통합·통합 유지보수·정보보호 <br>컨설팅까지, CMT의 전문 역량으로 비즈니스 연속성을 보장합니다.</p>
     </div>
 
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-num">01</div>
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3>보안솔루션 구축</h3>
-        <p>FortiGate·Juniper·Radware 등 글로벌 솔루션 기반으로 네트워크·시스템 보안장비를 통합 구축합니다.</p>
+        <p>글로벌 솔루션 기반으로<br>네트워크·시스템 보안장비를<br>통합 구축합니다.</p>
         <div class="service-tags">
           <span>NGFW</span><span>WAF</span><span>SASE</span>
         </div>
@@ -1341,12 +1350,11 @@
       </div>
 
       <div class="service-card">
-        <div class="service-num">02</div>
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
         </div>
         <h3>보안관제 (CMT EYES)</h3>
-        <p>SIEM·NMS·CRM 기반 자체 관제 플랫폼으로 24x365 통합관제·침해대응·취약점 점검을 제공합니다.</p>
+        <p>자체 관제 플랫폼으로<br>24x365 통합관제·침해대응을<br>제공합니다.</p>
         <div class="service-tags">
           <span>CMT EYES</span><span>SOC</span><span>AI-SOC</span>
         </div>
@@ -1354,12 +1362,11 @@
       </div>
 
       <div class="service-card">
-        <div class="service-num">03</div>
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
         <h3>SI 및 시스템개발</h3>
-        <p>업무분석·설계·프로젝트 관리부터 네트워크 인프라 구축·시스템 통합까지 전 단계를 책임집니다.</p>
+        <p>설계·PM·시스템 통합까지<br>인프라 전 단계를<br>책임집니다.</p>
         <div class="service-tags">
           <span>SI</span><span>NI</span><span>인프라</span>
         </div>
@@ -1367,12 +1374,11 @@
       </div>
 
       <div class="service-card">
-        <div class="service-num">04</div>
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <h3>통합 유지보수</h3>
-        <p>전국 지원망과 해외 거점 기반으로 보안·네트워크·시스템의 365일 무중단 장애대응을 제공합니다.</p>
+        <p>전국·해외 지원망 기반<br>365일 무중단<br>장애대응을 제공합니다.</p>
         <div class="service-tags">
           <span>전국망</span><span>긴급출동</span><span>기술지원</span>
         </div>
@@ -1380,12 +1386,11 @@
       </div>
 
       <div class="service-card">
-        <div class="service-num">05</div>
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         </div>
         <h3>보안컨설팅</h3>
-        <p>ISMS·전자금융감독규정·기반시설·개인정보보호 진단부터 클라우드·IDC 컨설팅까지 한 번에 처리합니다.</p>
+        <p>ISMS·취약점 진단부터<br>클라우드·IDC 컨설팅까지<br>한 번에 처리합니다.</p>
         <div class="service-tags">
           <span>ISMS-P</span><span>모의해킹</span><span>클라우드</span>
         </div>
@@ -1403,7 +1408,7 @@
       <div class="overview-text">
         <div class="section-eyebrow">INTEGRATED SOC</div>
         <h2 class="section-title">24x365 통합 보안관제,<br><span class="accent">CMT EYES</span></h2>
-        <p class="section-desc">자체 관제 플랫폼 CMT EYES 기반으로 SIEM·NMS·CRM 통합 운영부터 침해사고 대응까지, 표준화된 4단계 프로세스로 운영합니다.</p>
+        <p class="section-desc">자체 관제 플랫폼 CMT EYES 기반으로 SIEM·NMS·CRM 통합 운영부터 <br>침해사고 대응까지, 표준화된 4단계 프로세스로 운영합니다.</p>
         <a href="services_detail_securityoperationcenter.html" class="btn-primary">
           보안관제 자세히 보기
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1581,7 +1586,7 @@
     <div class="cta-box">
       <div class="cta-content">
         <h2>비즈니스의 다음 단계, CMT와 함께 시작하세요.</h2>
-        <p>보안솔루션 구축부터 24x365 보안관제·SI·통합 유지보수·컨설팅까지 — CMT가 고객의 디지털 여정을 함께 합니다.</p>
+        <p>보안솔루션 구축부터 24x365 보안관제·SI·통합 유지보수·컨설팅까지 CMT가 고객의 디지털 여정을 함께 합니다.</p>
         <div class="cta-actions">
           <a href="#" class="btn-white">지금 문의하기</a>
           <a href="#" class="btn-outline">회사 소개서 다운로드</a>
@@ -1594,7 +1599,7 @@
 <!-- ===== Partners (Marquee) ===== -->
 <section class="partners">
   <div class="container">
-    <div class="partners-title">— TRUSTED PARTNERS —</div>
+    <div class="partners-title">TRUSTED PARTNERS</div>
   </div>
   <div class="marquee">
     <div class="marquee-track">
