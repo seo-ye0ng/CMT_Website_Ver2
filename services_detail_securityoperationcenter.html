@@ -123,8 +123,7 @@
     background: var(--brand-soft);
   }
 
-  .has-submenu > .nav-trigger::after,
-  .has-megamenu > .nav-trigger::after {
+  .has-submenu > .nav-trigger::after, {
     content: '';
     display: inline-block;
     width: 7px;
@@ -136,8 +135,7 @@
     transition: transform 0.2s ease;
   }
 
-  .has-submenu:hover > .nav-trigger::after,
-  .has-megamenu:hover > .nav-trigger::after {
+  .has-submenu:hover > .nav-trigger::after, {
     transform: rotate(225deg) translate(-1px, -1px);
     margin-top: 2px;
   }
@@ -150,13 +148,23 @@
     background: white;
     border-radius: 16px;
     padding: 8px;
-    min-width: 200px;
+    min-width: 220px;
     box-shadow: 0 16px 48px rgba(14, 23, 48, 0.12), 0 2px 8px rgba(14, 23, 48, 0.06);
     border: 1px solid var(--line);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: all 0.25s ease;
+  }
+
+  /* hover bridge between trigger & dropdown */
+  .has-submenu::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 16px;
   }
 
   .has-submenu:hover .dropdown {
@@ -193,78 +201,6 @@
   }
 
   .dropdown a:hover .dot { opacity: 1; }
-
-  .megamenu-wrap {
-    position: fixed;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-8px);
-    width: calc(100% - 48px);
-    max-width: 1200px;
-    background: white;
-    border-radius: 24px;
-    padding: 32px 36px;
-    box-shadow: 0 24px 60px rgba(14, 23, 48, 0.15), 0 4px 12px rgba(14, 23, 48, 0.06);
-    border: 1px solid var(--line);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all 0.25s ease;
-    z-index: 99;
-  }
-
-  .has-megamenu:hover .megamenu-wrap {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .has-megamenu::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: -100px;
-    right: -100px;
-    height: 24px;
-  }
-
-  .megamenu-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-  }
-
-  .megamenu-col h4 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--brand);
-    padding: 8px 12px 12px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid var(--line);
-    letter-spacing: -0.01em;
-  }
-
-  .megamenu-col a {
-    display: block;
-    padding: 9px 12px;
-    font-size: 18px;
-    color: var(--ink-2);
-    border-radius: 8px;
-    transition: all 0.18s ease;
-  }
-
-  .megamenu-col a:hover {
-    background: var(--brand-soft);
-    color: var(--brand);
-    transform: translateX(2px);
-  }
-
-  .megamenu-col a.is-active {
-    background: var(--brand-soft);
-    color: var(--brand);
-    font-weight: 600;
-  }
 
   .cta-btn {
     display: inline-flex;
@@ -420,7 +356,7 @@
   }
 
   .page-tabs a {
-    padding: 10px 22px;
+    padding: 10px 18px;
     font-size: 18px;
     font-weight: 500;
     color: var(--ink-2);
@@ -1129,99 +1065,113 @@
     </a>
     <nav>
       <ul>
+        <!-- 01. 회사소개 -->
         <li class="has-submenu">
-          <button class="nav-trigger">회사 소개</button>
+          <button class="nav-trigger">회사소개</button>
           <div class="dropdown">
-            <a href="#"><span class="dot"></span>회사 개요</a>
-            <a href="#"><span class="dot"></span>회사 연혁</a>
-            <a href="#"><span class="dot"></span>CI</a>
-            <a href="#"><span class="dot"></span>인력 채용</a>
-            <a href="#"><span class="dot"></span>찾아오시는 길</a>
+            <a href="#"><span class="dot"></span>CMT 소개</a>
+            <a href="#"><span class="dot"></span>비전 · 미션</a>
+            <a href="#"><span class="dot"></span>연혁</a>
+            <a href="#"><span class="dot"></span>조직 및 인력</a>
+            <a href="#"><span class="dot"></span>인증 및 자격</a>
+            <a href="#"><span class="dot"></span>재무 및 신용</a>
+            <a href="#"><span class="dot"></span>전국/해외 네트워크</a>
+            <a href="#"><span class="dot"></span>파트너 및 고객</a>
+            <a href="#"><span class="dot"></span>오시는 길</a>
           </div>
         </li>
 
+        <!-- 02. 보안관제 — active -->
         <li class="has-submenu">
-          <button class="nav-trigger">보안 솔루션</button>
+          <a href="services_detail_securityoperationcenter.html" class="nav-trigger is-active">보안관제</a>
           <div class="dropdown">
-            <a href="#"><span class="dot"></span>Fortinet</a>
-            <a href="#"><span class="dot"></span>Juniper</a>
-            <a href="#"><span class="dot"></span>Radware</a>
-            <a href="#"><span class="dot"></span>Symantec</a>
-            <a href="#"><span class="dot"></span>Rapid7</a>
-            <a href="#"><span class="dot"></span>Arbor</a>
-            <a href="#"><span class="dot"></span>F5 Networks</a>
-            <a href="#"><span class="dot"></span>Tippingpoint</a>
+            <a href="services_detail_securityoperationcenter.html" class="is-active"><span class="dot"></span>서비스 개요</a>
+            <a href="#"><span class="dot"></span>CMT EYES</a>
+            <a href="#"><span class="dot"></span>관제 방법론</a>
+            <a href="#"><span class="dot"></span>관제 서비스 범위</a>
+            <a href="#"><span class="dot"></span>관제 상품</a>
+            <a href="#"><span class="dot"></span>AI-SOC</a>
+            <a href="#"><span class="dot"></span>서비스 SLA</a>
           </div>
         </li>
 
+        <!-- 03. 사업분야 -->
         <li class="has-submenu">
-          <button class="nav-trigger">신사업</button>
+          <button class="nav-trigger">사업분야</button>
           <div class="dropdown">
-            <a href="#"><span class="dot"></span>신사업 소개</a>
-            <a href="#"><span class="dot"></span>AI 솔루션</a>
-            <a href="#"><span class="dot"></span>Bigdata 솔루션</a>
-            <a href="#"><span class="dot"></span>Cloud 솔루션</a>
-            <a href="#"><span class="dot"></span>IT 보안솔루션</a>
-            <a href="#"><span class="dot"></span>OT 보안솔루션</a>
+            <a href="#"><span class="dot"></span>Security Integration</a>
+            <a href="#"><span class="dot"></span>Network Integration</a>
+            <a href="#"><span class="dot"></span>System Integration</a>
+            <a href="#"><span class="dot"></span>통합 유지보수</a>
+            <a href="#"><span class="dot"></span>정보보호 컨설팅</a>
+            <a href="#"><span class="dot"></span>클라우드 컨설팅/MSP</a>
+            <a href="#"><span class="dot"></span>IDC 컨설팅</a>
+            <a href="#"><span class="dot"></span>OT Security</a>
           </div>
         </li>
 
-        <!-- 서비스 (Megamenu) — active -->
-        <li class="has-megamenu">
-          <button class="nav-trigger is-active">서비스</button>
-          <div class="megamenu-wrap">
-            <div class="megamenu-grid">
-              <div class="megamenu-col">
-                <h4>보안 관제</h4>
-                <a href="services_detail_securityoperationcenter.html" class="is-active">서비스 소개</a>
-                <a href="#">서비스 특징</a>
-                <a href="#">서비스 방법</a>
-                <a href="#">제공 서비스</a>
-              </div>
-              <div class="megamenu-col">
-                <h4>보안 컨설팅</h4>
-                <a href="#">보안 컨설팅 서비스 종류</a>
-                <a href="#">컨설팅 수행절차</a>
-                <a href="#">기술 취약점 진단</a>
-                <a href="#">모의해킹</a>
-                <a href="#">모바일 모의해킹</a>
-              </div>
-              <div class="megamenu-col">
-                <h4>클라우드 서비스</h4>
-                <a href="#">클라우드 서비스 소개</a>
-                <a href="#">컨설팅 서비스</a>
-                <a href="#">마이그레이션</a>
-                <a href="#">매니지드 서비스</a>
-                <a href="#">최적화 서비스</a>
-                <a href="#">보안 서비스</a>
-                <a href="#">주요 고객사</a>
-              </div>
-              <div class="megamenu-col">
-                <h4>보안 SI</h4>
-                <a href="#">서비스 소개</a>
-                <a href="#">서비스 특징</a>
-                <a href="#">서비스 분야</a>
-                <a href="#">서비스 방법론</a>
-                <a href="#">서비스 기대효과</a>
-              </div>
-              <div class="megamenu-col">
-                <h4>통합 유지보수</h4>
-                <a href="#">서비스 소개</a>
-                <a href="#">서비스 특징</a>
-                <a href="#">서비스 방법론</a>
-              </div>
-              <div class="megamenu-col">
-                <h4>AICC</h4>
-                <a href="#">AICC 소개</a>
-                <a href="#">SBC 솔루션</a>
-                <a href="#">Genesys Cloud</a>
-              </div>
-            </div>
+        <!-- 04. 솔루션 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">솔루션</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>Network Security</a>
+            <a href="#"><span class="dot"></span>DDoS / Application Protection</a>
+            <a href="#"><span class="dot"></span>SASE / Cloud Security</a>
+            <a href="#"><span class="dot"></span>Vulnerability Management</a>
+            <a href="#"><span class="dot"></span>Endpoint / XDR</a>
+            <a href="#"><span class="dot"></span>NPM / 성능 모니터링</a>
+            <a href="#"><span class="dot"></span>Backup / Resilience</a>
+            <a href="#"><span class="dot"></span>CMT 자체 플랫폼</a>
           </div>
         </li>
 
-        <li><button class="nav-trigger">성공사례</button></li>
-        <li><button class="nav-trigger">고객지원</button></li>
+        <!-- 05. 산업유형별 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">산업유형별</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>금융/카드/증권</a>
+            <a href="#"><span class="dot"></span>공공/기관</a>
+            <a href="#"><span class="dot"></span>제조/OT</a>
+            <a href="#"><span class="dot"></span>클라우드/데이터센터</a>
+            <a href="#"><span class="dot"></span>글로벌 사업장</a>
+          </div>
+        </li>
+
+        <!-- 06. 주요레퍼런스 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">주요레퍼런스</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>주요 고객사</a>
+            <a href="#"><span class="dot"></span>구축 사례</a>
+            <a href="#"><span class="dot"></span>보안관제 사례</a>
+            <a href="#"><span class="dot"></span>유지보수 사례</a>
+            <a href="#"><span class="dot"></span>성과 지표</a>
+          </div>
+        </li>
+
+        <!-- 07. 신사업·인사이트 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">연구·인사이트</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>기술연구소</a>
+            <a href="#"><span class="dot"></span>AI-SOC 연구</a>
+            <a href="#"><span class="dot"></span>기술 백서</a>
+            <a href="#"><span class="dot"></span>보안 리포트</a>
+            <a href="#"><span class="dot"></span>뉴스/공지</a>
+          </div>
+        </li>
+
+        <!-- 08. 문의 -->
+        <li class="has-submenu">
+          <button class="nav-trigger">문의</button>
+          <div class="dropdown">
+            <a href="#"><span class="dot"></span>제품/솔루션 문의</a>
+            <a href="#"><span class="dot"></span>보안관제 문의</a>
+            <a href="#"><span class="dot"></span>컨설팅 문의</a>
+            <a href="#"><span class="dot"></span>기술지원</a>
+            <a href="#"><span class="dot"></span>파트너/채용 문의</a>
+          </div>
+        </li>
       </ul>
     </nav>
     <a href="#" class="cta-btn">문의하기</a>
@@ -1244,7 +1194,7 @@
       <div class="sub-hero-head">
         <div>
           <h1>보안 <span class="accent">관제</span></h1>
-          <p class="lead">365일 24시간 끊김 없는 실시간 모니터링으로 고객의 정보자산을 지키는 CMT의 전문 SOC 서비스입니다.</p>
+          <p class="lead">통합관제·보안시스템 임대·장애대응·취약점 점검까지, CMT EYES 플랫폼 기반 24x365 아웃소싱 보안 서비스를 제공합니다.</p>
         </div>
       </div>
     </div>
@@ -1255,10 +1205,13 @@
 <section class="page-tabs-section">
   <div class="container">
     <nav class="page-tabs" aria-label="보안관제 페이지 탭">
-      <a href="#" class="active">서비스 소개</a>
-      <a href="#">서비스 특징</a>
-      <a href="#">서비스 방법</a>
-      <a href="#">제공 서비스</a>
+      <a href="#" class="active">서비스 개요</a>
+      <a href="#">CMT EYES</a>
+      <a href="#">관제 방법론</a>
+      <a href="#">관제 서비스 범위</a>
+      <a href="#">관제 상품</a>
+      <a href="#">AI-SOC</a>
+      <a href="#">서비스 SLA</a>
     </nav>
   </div>
 </section>
@@ -1274,8 +1227,9 @@
         <!-- Intro -->
         <div class="intro-card">
           <p>
-            새로운 공격기법이 매우 다양해지고, 정보 자산에 대한 침해시도 및 각종 보안 위험성이 매년 증가하고 있습니다.
-            이와 같은 대내외적 보안위협에 효과적으로 대응하기 위해서는 <span class="em">외부 전문 운영인력을 통한 보안관제서비스</span>가 반드시 필요합니다.
+            새로운 공격기법은 매우 다양해지고, 정보 자산에 대한 침해시도와 보안 위험성이 매년 증가하고 있습니다.
+            CMT는 자체 관제 플랫폼 <span class="em">CMT EYES</span> 기반의 통합관제·보안시스템 임대·장애대응·취약점 점검을 통해,
+            전문 운영인력으로 고객의 보안위협에 <span class="em">24x365 무중단 대응</span>합니다.
           </p>
         </div>
 
@@ -1290,26 +1244,26 @@
             <!-- Petal 1 -->
             <div class="petal petal-1">
               <span class="petal-num">01</span>
-              <svg class="petal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-              <span class="petal-text">최신 보안기술 기반<br>침해사고 예방·대응</span>
+              <svg class="petal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+              <span class="petal-text">CMT EYES 자체<br>관제 플랫폼 보유</span>
             </div>
             <!-- Petal 2 -->
             <div class="petal petal-2">
               <span class="petal-num">02</span>
               <svg class="petal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              <span class="petal-text">24 × 365 실시간 관제<br>무중단 서비스 실현</span>
+              <span class="petal-text">24 × 365 실시간 관제<br>무중단 서비스</span>
             </div>
             <!-- Petal 3 -->
             <div class="petal petal-3">
               <span class="petal-num">03</span>
-              <svg class="petal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              <span class="petal-text">설비·투자비용<br>최소화로 효율 운영</span>
+              <svg class="petal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M3.5 7l5.2 3M15.3 14l5.2 3M3.5 17l5.2-3M15.3 10l5.2-3"/></svg>
+              <span class="petal-text">AI-SOC 머신러닝<br>탐지 정확도 향상</span>
             </div>
             <!-- Petal 4 -->
             <div class="petal petal-4">
               <span class="petal-num">04</span>
               <svg class="petal-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="petal-text">인건비 절감<br>보안 전문가 활용</span>
+              <span class="petal-text">보안관제 전문기업<br>전문 인력 운영</span>
             </div>
 
             <!-- Core -->
@@ -1376,9 +1330,9 @@
           <div class="side-card-ic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </div>
-          <div class="side-card-eyebrow">SECURITY OPERATION SERVICE</div>
+          <div class="side-card-eyebrow">CMT EYES · 보안관제 플랫폼</div>
           <div class="side-card-title">보안 관제</div>
-          <div class="side-card-desc">365일 24시간 끊김 없는<br>실시간 통합 보안관제</div>
+          <div class="side-card-desc">자체 관제 플랫폼 기반<br>24x365 통합 보안관제</div>
         </div>
 
         <div class="side-list">
@@ -1431,7 +1385,7 @@
           <span class="logo-mark">C</span>
           <span>씨엠티정보통신</span>
         </div>
-        <p>더 나은, 더 빠른 비즈니스 성과를 위한 엔터프라이즈 네트워크·SI·보안 파트너</p>
+        <p>AI 기반 통합 보안·네트워크 전문기업. CMT EYES 24x365 관제와 전국·해외 지원망으로 고객의 디지털 인프라를 지킵니다.</p>
         <div class="footer-contact">
           <div><strong>주소</strong>(04798) 서울시 성동구 성수이로22길 37, 803호</div>
           <div><strong>Tel</strong>02-6011-1377 &nbsp; <strong>Fax</strong>02-463-1376</div>
@@ -1439,33 +1393,33 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>회사</h4>
+        <h4>회사소개</h4>
         <ul>
-          <li><a href="#">회사 소개</a></li>
-          <li><a href="#">CEO 메시지</a></li>
+          <li><a href="#">CMT 소개</a></li>
+          <li><a href="#">비전 · 미션</a></li>
           <li><a href="#">연혁</a></li>
+          <li><a href="#">인증 및 자격</a></li>
           <li><a href="#">오시는 길</a></li>
-          <li><a href="#">채용 정보</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>서비스</h4>
+        <h4>사업분야</h4>
         <ul>
-          <li><a href="#">보안 관제</a></li>
-          <li><a href="#">보안 컨설팅</a></li>
-          <li><a href="#">클라우드 서비스</a></li>
-          <li><a href="#">보안 SI</a></li>
+          <li><a href="#">Security Integration</a></li>
+          <li><a href="#">Network Integration</a></li>
           <li><a href="#">통합 유지보수</a></li>
+          <li><a href="#">정보보호 컨설팅</a></li>
+          <li><a href="#">OT Security</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>고객지원</h4>
+        <h4>보안관제</h4>
         <ul>
-          <li><a href="#">공지사항</a></li>
-          <li><a href="#">자료실</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">1:1 문의</a></li>
-          <li><a href="#">파트너 문의</a></li>
+          <li><a href="services_detail_securityoperationcenter.html">서비스 개요</a></li>
+          <li><a href="#">CMT EYES</a></li>
+          <li><a href="#">관제 상품</a></li>
+          <li><a href="#">AI-SOC</a></li>
+          <li><a href="#">보안관제 문의</a></li>
         </ul>
       </div>
     </div>
