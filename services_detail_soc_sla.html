@@ -467,66 +467,167 @@
     color: transparent;
   }
 
-  /* ===== 2x2 Minimal Grid Diagram ===== */
+  /* ===== Petal Diagram ===== */
   .diagram-wrap {
     margin: 0 auto 100px;
-    max-width: 920px;
+    max-width: 700px;
     position: relative;
   }
 
   .diagram {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 48px;
-    box-shadow: 0 12px 40px rgba(14, 23, 48, 0.05);
-  }
-
-  .diagram-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .grid-cell {
-    padding: 36px 40px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
     position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 620px;
+    margin: 0 auto;
   }
 
-  /* 2x2 분할선 정리: 오른쪽 열은 우측 보더 제거, 아래 행은 하단 보더 제거 */
-  .grid-cell:nth-child(2n) { border-right: none; }
-  .grid-cell:nth-child(n+3) { border-bottom: none; }
+  /* Decorative orbit ring */
+  .diagram::before {
+    content: '';
+    position: absolute;
+    inset: 12%;
+    border: 1.5px dashed rgba(32, 64, 154, 0.18);
+    border-radius: 50%;
+    animation: spin 60s linear infinite;
+  }
 
-  .cell-num {
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .diagram-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 60%, var(--brand-light) 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow:
+      0 24px 60px rgba(32, 64, 154, 0.4),
+      inset 0 -8px 24px rgba(0, 0, 0, 0.15),
+      inset 0 4px 12px rgba(255, 255, 255, 0.15);
+    z-index: 5;
+  }
+
+  .diagram-core::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 2px solid rgba(32, 64, 154, 0.25);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .diagram-core::after {
+    content: '';
+    position: absolute;
+    inset: -28px;
+    border-radius: 50%;
+    border: 1px solid rgba(32, 64, 154, 0.15);
+    animation: pulse 2.4s 0.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0; transform: scale(1.12); }
+  }
+
+  .diagram-core .core-label {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+
+  .diagram-core .core-title {
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  /* petals */
+  .petal {
+    position: absolute;
+    width: 33%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #bcd6f4 0%, #7ba8db 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: default;
+    box-shadow:
+      0 16px 36px rgba(32, 64, 154, 0.22),
+      inset 0 -6px 16px rgba(0, 0, 0, 0.08),
+      inset 0 3px 10px rgba(255, 255, 255, 0.3);
+    z-index: 2;
+  }
+
+  .petal::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+  }
+
+  .petal-num {
+    position: absolute;
+    top: 14px;
     font-size: 15px;
     font-weight: 800;
     letter-spacing: 0.14em;
-    color: var(--brand);
-    margin-bottom: 22px;
+    color: white;
+    opacity: 0.75;
   }
 
-  .cell-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .cell-ic {
-    width: 30px;
-    height: 30px;
-    color: var(--ink);
-    flex-shrink: 0;
-  }
-
-  .cell-title {
-    font-size: 19px;
+  .petal-text {
+    font-size: clamp(15px, 1.25vw, 15px);
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--ink);
-    line-height: 1.45;
-    display: inline-block;
+    line-height: 1.4;
+    margin-top: 8px;
   }
+
+  .petal-ic {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 4px;
+    opacity: 0.95;
+  }
+
+  .petal:hover {
+    transform: scale(1.06);
+    background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
+    box-shadow:
+      0 24px 50px rgba(32, 64, 154, 0.4),
+      inset 0 -6px 16px rgba(0, 0, 0, 0.12),
+      inset 0 3px 10px rgba(255, 255, 255, 0.25);
+    z-index: 4;
+  }
+
+  .petal-1 { top: 4%;    left: 6%; }
+  .petal-2 { top: 4%;    right: 6%; }
+  .petal-3 { bottom: 4%; left: 6%; }
+  .petal-4 { bottom: 4%; right: 6%; }
 
   /* ===== Requirements grid ===== */
   .req-grid {
@@ -668,11 +769,10 @@
   }
 
   .side-card-title {
-    font-size: 32px;
+    font-size: 18px;
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
     position: relative;
     z-index: 1;
   }
@@ -963,13 +1063,18 @@
     .req-grid { grid-template-columns: 1fr; }
     .intro-card { padding: 24px 22px; }
     .diagram-wrap { margin-bottom: 80px; }
-    .diagram { padding: 24px; }
-    .diagram-grid { grid-template-columns: 1fr; }
-    .grid-cell { padding: 28px 24px; border-right: none; }
-    .grid-cell:nth-child(n+3) { border-bottom: 1px solid var(--line); }
-    .grid-cell:last-child { border-bottom: none; }
+    .petal-text { font-size: 18px; }
     .cta-box { padding: 60px 28px; border-radius: 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .diagram { max-width: 360px; }
+    .petal { width: 38%; }
+    .petal-1 { top: 2%;    left: 2%; }
+    .petal-2 { top: 2%;    right: 2%; }
+    .petal-3 { bottom: 2%; left: 2%; }
+    .petal-4 { bottom: 2%; right: 2%; }
   }
 </style>
 </head>
@@ -1003,13 +1108,13 @@
         <li class="has-submenu">
           <a href="services_detail_securityoperationcenter.html" class="nav-trigger is-active">보안관제</a>
           <div class="dropdown">
-            <a href="services_detail_securityoperationcenter.html" class="is-active"><span class="dot"></span>서비스 개요</a>
+            <a href="services_detail_securityoperationcenter.html"><span class="dot"></span>서비스 개요</a>
             <a href="services_detail_soc_cmteyes.html"><span class="dot"></span>CMT EYES</a>
             <a href="services_detail_soc_methodology.html"><span class="dot"></span>관제 방법론</a>
             <a href="services_detail_soc_scope.html"><span class="dot"></span>관제 서비스 범위</a>
             <a href="services_detail_soc_products.html"><span class="dot"></span>관제 상품</a>
             <a href="services_detail_soc_aisoc.html"><span class="dot"></span>AI-SOC</a>
-            <a href="services_detail_soc_sla.html"><span class="dot"></span>서비스 SLA</a>
+            <a href="services_detail_soc_sla.html" class="is-active"><span class="dot"></span>서비스 SLA</a>
           </div>
         </li>
 
@@ -1123,13 +1228,13 @@
 <section class="page-tabs-section">
   <div class="container">
     <nav class="page-tabs" aria-label="보안관제 페이지 탭">
-      <a href="services_detail_securityoperationcenter.html" class="active">서비스 개요</a>
+      <a href="services_detail_securityoperationcenter.html">서비스 개요</a>
       <a href="services_detail_soc_cmteyes.html">CMT EYES</a>
       <a href="services_detail_soc_methodology.html">관제 방법론</a>
       <a href="services_detail_soc_scope.html">관제 서비스 범위</a>
       <a href="services_detail_soc_products.html">관제 상품</a>
       <a href="services_detail_soc_aisoc.html">AI-SOC</a>
-      <a href="services_detail_soc_sla.html">서비스 SLA</a>
+      <a href="services_detail_soc_sla.html" class="active">서비스 SLA</a>
     </nav>
   </div>
 </section>
@@ -1142,103 +1247,82 @@
       <!-- Main column -->
       <div class="detail-content">
 
-        <!-- Intro -->
         <div class="intro-card">
-          <p>
-            새로운 공격기법들은 매우 다양해지고, 정보 자산에 대한 침해시도 및 각종 보안 위험성이 매년 증가하고 있으므로
-            이와 같은 대내외적 보안위협에 대응하기 위해 <span class="em">외부 전문 운영인력을 통한 보안관제서비스</span>가 필요합니다.
-          </p>
+          <p>CMT 보안관제는 <span class="em">24x365 모니터링·장애접수·대응 이력관리·보고 체계</span>를 통해 약속된 서비스 수준을 제공합니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
-        <!-- Diagram block -->
         <div class="block-head">
-          <div class="block-eyebrow">CORE VALUE</div>
-          <h2 class="block-title">CMT 보안관제 서비스의 <span class="accent">4가지 핵심 가치</span></h2>
-        </div>
-
-        <div class="diagram-wrap">
-          <div class="diagram">
-            <div class="diagram-grid">
-              <!-- Cell 1 -->
-              <div class="grid-cell">
-                <div class="cell-num">01</div>
-                <div class="cell-row">
-                  <svg class="cell-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
-                  <div class="cell-title">최신 보안 기술을 활용한 침해 사고 예방 및 대응</div>
-                </div>
-              </div>
-              <!-- Cell 2 -->
-              <div class="grid-cell">
-                <div class="cell-num">02</div>
-                <div class="cell-row">
-                  <svg class="cell-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <div class="cell-title">24x365 실시간 관제를 통한<br>무중단 서비스 실현</div>
-                </div>
-              </div>
-              <!-- Cell 3 -->
-              <div class="grid-cell">
-                <div class="cell-num">03</div>
-                <div class="cell-row">
-                  <svg class="cell-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M3.5 7l5.2 3M15.3 14l5.2 3M3.5 17l5.2-3M15.3 10l5.2-3"/></svg>
-                  <div class="cell-title">보안 및 운영을 위한 설비 및 투자<br>비용 최소화</div>
-                </div>
-              </div>
-              <!-- Cell 4 -->
-              <div class="grid-cell">
-                <div class="cell-num">04</div>
-                <div class="cell-row">
-                  <svg class="cell-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <div class="cell-title">인건비 절감과 불필요한 조직감소 및 보안 전문가 활용</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Requirements block -->
-        <div class="block-head">
-          <div class="block-eyebrow">REQUIREMENTS</div>
-          <h2 class="block-title">보안관제가 필요한 <span class="accent">요구사항</span></h2>
+          <div class="block-eyebrow">SLA SCOPE</div>
+          <h2 class="block-title">서비스 수준 <span class="accent">관리 항목</span></h2>
         </div>
 
         <div class="req-grid">
-          <!-- 대외적 -->
           <div class="req-card">
             <div class="req-head">
               <div class="req-ic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
               </div>
               <div class="req-text-wrap">
-                <span class="req-tag">EXTERNAL</span>
-                <h3>대외적 요구사항</h3>
+                <span class="req-tag">MONITORING</span>
+                <h3>24x365 모니터링</h3>
               </div>
             </div>
             <ul class="req-list">
-              <li>성장하는 신기술 대비 정보보호 기술 습득의 <br>어려움 발생</li>
-              <li>침해 기술의 지속적인 발달</li>
-              <li>보안 위험성의 지속적인 증가</li>
-              <li>정보자산 침해시도 매년 증가</li>
-              <li>대응체계 수립 및 대응역량 강화 필요</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Consectetur adipiscing elit</li>
+              <li>Sed do eiusmod tempor</li>
+              <li>Incididunt ut labore et dolore</li>
             </ul>
           </div>
-
-          <!-- 대내적 -->
           <div class="req-card">
             <div class="req-head">
               <div class="req-ic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
               </div>
               <div class="req-text-wrap">
-                <span class="req-tag">INTERNAL</span>
-                <h3>대내적 요구사항</h3>
+                <span class="req-tag">INCIDENT</span>
+                <h3>장애접수 · 대응</h3>
               </div>
             </div>
             <ul class="req-list">
-              <li>보안전문 인력 부족 및 양성의 어려움</li>
-              <li>최신 보안기술 / 동향 정보 확보의 어려움</li>
-              <li>보안 솔루션 운영 / 관리의 부담</li>
-              <li>보안지식의 부족</li>
-              <li>보안관련 예산 부족</li>
+              <li>Magna aliqua ut enim ad</li>
+              <li>Minim veniam quis nostrud</li>
+              <li>Exercitation ullamco laboris</li>
+              <li>Nisi ut aliquip ex ea commodo</li>
+            </ul>
+          </div>
+          <div class="req-card">
+            <div class="req-head">
+              <div class="req-ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+              </div>
+              <div class="req-text-wrap">
+                <span class="req-tag">HISTORY</span>
+                <h3>대응 이력 관리</h3>
+              </div>
+            </div>
+            <ul class="req-list">
+              <li>Consequat duis aute irure</li>
+              <li>Dolor in reprehenderit in</li>
+              <li>Voluptate velit esse cillum</li>
+              <li>Dolore eu fugiat nulla pariatur</li>
+            </ul>
+          </div>
+          <div class="req-card">
+            <div class="req-head">
+              <div class="req-ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+              </div>
+              <div class="req-text-wrap">
+                <span class="req-tag">REPORT</span>
+                <h3>보고 체계</h3>
+              </div>
+            </div>
+            <ul class="req-list">
+              <li>Excepteur sint occaecat</li>
+              <li>Cupidatat non proident sunt</li>
+              <li>In culpa qui officia deserunt</li>
+              <li>Mollit anim id est laborum</li>
             </ul>
           </div>
         </div>
