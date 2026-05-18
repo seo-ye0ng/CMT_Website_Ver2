@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CMT 정보통신 | 보안관제 - 서비스 소개</title>
+<title>CMT 정보통신 | 재무 및 신용</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
 <style>
   :root {
@@ -42,7 +42,7 @@
     padding: 0 32px;
   }
 
-  /* ===== Header (identical to landing) ===== */
+  /* ===== Header ===== */
   header {
     position: fixed;
     top: 16px;
@@ -128,23 +128,6 @@
     background: var(--brand-soft);
   }
 
-  .has-submenu > .nav-trigger::after, {
-    content: '';
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-right: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    transform: rotate(45deg) translate(-1px, -1px);
-    margin-top: -4px;
-    transition: transform 0.2s ease;
-  }
-
-  .has-submenu:hover > .nav-trigger::after, {
-    transform: rotate(225deg) translate(-1px, -1px);
-    margin-top: 2px;
-  }
-
   .dropdown {
     position: absolute;
     top: calc(100% + 12px);
@@ -162,7 +145,6 @@
     transition: all 0.25s ease;
   }
 
-  /* hover bridge between trigger & dropdown */
   .has-submenu::before {
     content: '';
     position: absolute;
@@ -234,7 +216,7 @@
 
   .cta-btn:hover::after { transform: translate(3px, 0); }
 
-  /* ===== Sub Hero (page header) ===== */
+  /* ===== Sub Hero ===== */
   .sub-hero {
     position: relative;
     padding: 160px 0 70px;
@@ -285,11 +267,7 @@
     margin-bottom: 60px;
   }
 
-  .breadcrumb a {
-    color: var(--ink-3);
-    transition: color 0.2s;
-  }
-
+  .breadcrumb a { color: var(--ink-3); transition: color 0.2s; }
   .breadcrumb a:hover { color: var(--brand); }
 
   .breadcrumb .home-link {
@@ -300,25 +278,11 @@
     cursor: default;
   }
 
-  .breadcrumb .home-ic {
-    width: 14px; height: 14px;
-    color: var(--ink-3);
-  }
+  .breadcrumb .home-ic { width: 14px; height: 14px; color: var(--ink-3); }
+  .breadcrumb .sep { color: var(--ink-3); opacity: 0.5; font-size: 18px; }
+  .breadcrumb .current { color: var(--brand); font-weight: 600; }
 
-  .breadcrumb .sep {
-    color: var(--ink-3);
-    opacity: 0.5;
-    font-size: 18px;
-  }
-
-  .breadcrumb .current {
-    color: var(--brand);
-    font-weight: 600;
-  }
-
-  .sub-hero-head {
-    display: block;
-  }
+  .sub-hero-head { display: block; }
 
   .sub-hero h1 {
     font-size: clamp(36px, 5vw, 60px);
@@ -342,7 +306,7 @@
     line-height: 1.65;
   }
 
-  /* Page tabs (body top, left-aligned) */
+  /* Page tabs */
   .page-tabs-section {
     padding: 40px 0;
     background: var(--bg);
@@ -370,9 +334,7 @@
     white-space: nowrap;
   }
 
-  .page-tabs a:hover {
-    color: var(--brand);
-  }
+  .page-tabs a:hover { color: var(--brand); }
 
   .page-tabs a.active {
     background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
@@ -453,254 +415,137 @@
     color: transparent;
   }
 
-  /* ===== Petal Diagram ===== */
-  .diagram-wrap {
-    margin: 0 auto 100px;
-    max-width: 700px;
-    position: relative;
-  }
-
-  .diagram {
-    position: relative;
+  /* ===== Company info table ===== */
+  .company-visual {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    max-width: 620px;
-    margin: 0 auto;
-  }
-
-  /* Decorative orbit ring */
-  .diagram::before {
-    content: '';
-    position: absolute;
-    inset: 12%;
-    border: 1.5px dashed rgba(32, 64, 154, 0.18);
-    border-radius: 50%;
-    animation: spin 60s linear infinite;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .diagram-core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 28%;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 60%, var(--brand-light) 100%);
-    color: white;
+    aspect-ratio: 21 / 9;
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgba(32, 64, 154, 0.85) 0%, rgba(74, 110, 199, 0.85) 100%),
+      linear-gradient(180deg, #c8d4f0 0%, #d4def0 100%);
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .company-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  }
+
+  .company-visual-content {
+    position: relative;
+    z-index: 1;
     text-align: center;
-    box-shadow:
-      0 24px 60px rgba(32, 64, 154, 0.4),
-      inset 0 -8px 24px rgba(0, 0, 0, 0.15),
-      inset 0 4px 12px rgba(255, 255, 255, 0.15);
-    z-index: 5;
-  }
-
-  .diagram-core::before {
-    content: '';
-    position: absolute;
-    inset: -14px;
-    border-radius: 50%;
-    border: 2px solid rgba(32, 64, 154, 0.25);
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-
-  .diagram-core::after {
-    content: '';
-    position: absolute;
-    inset: -28px;
-    border-radius: 50%;
-    border: 1px solid rgba(32, 64, 154, 0.15);
-    animation: pulse 2.4s 0.4s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0; transform: scale(1.12); }
-  }
-
-  .diagram-core .core-label {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    opacity: 0.75;
-    margin-bottom: 4px;
-  }
-
-  .diagram-core .core-title {
-    font-size: clamp(15px, 1.8vw, 18px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-  }
-
-  /* petals */
-  .petal {
-    position: absolute;
-    width: 33%;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #bcd6f4 0%, #7ba8db 100%);
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 12px;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    cursor: default;
-    box-shadow:
-      0 16px 36px rgba(32, 64, 154, 0.22),
-      inset 0 -6px 16px rgba(0, 0, 0, 0.08),
-      inset 0 3px 10px rgba(255, 255, 255, 0.3);
-    z-index: 2;
   }
 
-  .petal::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.45);
-    pointer-events: none;
-  }
-
-  .petal-num {
-    position: absolute;
-    top: 14px;
+  .company-visual-content .label {
     font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    opacity: 0.85;
+    margin-bottom: 12px;
+  }
+
+  .company-visual-content h2 {
+    font-size: clamp(28px, 4vw, 42px);
     font-weight: 800;
-    letter-spacing: 0.14em;
-    color: white;
-    opacity: 0.75;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
   }
 
-  .petal-text {
-    font-size: clamp(15px, 1.25vw, 15px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.4;
-    margin-top: 8px;
+  .info-table {
+    width: 100%;
+    border-top: 2px solid var(--brand);
+    margin-bottom: 80px;
   }
 
-  .petal-ic {
-    width: 26px;
-    height: 26px;
-    margin-bottom: 4px;
-    opacity: 0.95;
-  }
-
-  .petal:hover {
-    transform: scale(1.06);
-    background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
-    box-shadow:
-      0 24px 50px rgba(32, 64, 154, 0.4),
-      inset 0 -6px 16px rgba(0, 0, 0, 0.12),
-      inset 0 3px 10px rgba(255, 255, 255, 0.25);
-    z-index: 4;
-  }
-
-  .petal-1 { top: 4%;    left: 6%; }
-  .petal-2 { top: 4%;    right: 6%; }
-  .petal-3 { bottom: 4%; left: 6%; }
-  .petal-4 { bottom: 4%; right: 6%; }
-
-  /* ===== Requirements grid ===== */
-  .req-grid {
+  .info-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 0;
+    grid-template-columns: 180px 1fr 180px 1fr;
+    border-bottom: 1px solid var(--line);
   }
 
-  .req-card {
+  .info-row.single {
+    grid-template-columns: 180px 1fr;
+  }
+
+  .info-label {
+    padding: 18px 20px;
+    background: var(--brand-soft);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+  }
+
+  .info-value {
+    padding: 18px 24px;
+    font-size: 18px;
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+  }
+
+  /* ===== Strength cards ===== */
+  .strength-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .strength-card {
     background: linear-gradient(180deg, var(--white) 0%, #fafbfd 100%);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 36px 32px;
-    position: relative;
-    overflow: hidden;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
   }
 
-  .req-head {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 24px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed var(--line);
+  .strength-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(32, 64, 154, 0.1);
+    border-color: var(--brand-light);
   }
 
-  .req-ic {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+  .strength-ic {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
     background: var(--brand-soft);
     color: var(--brand);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    margin-bottom: 20px;
   }
 
-  .req-ic svg { width: 22px; height: 22px; }
+  .strength-ic svg { width: 26px; height: 26px; }
 
-  .req-head .req-text-wrap {
-    flex: 1;
-  }
-
-  .req-tag {
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--brand);
-    letter-spacing: 0.1em;
-    margin-bottom: 4px;
-  }
-
-  .req-head h3 {
-    font-size: 21px;
+  .strength-card h3 {
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--ink);
+    margin-bottom: 10px;
   }
 
-  .req-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  .strength-card p {
+    font-size: 15px;
+    color: var(--ink-3);
+    line-height: 1.65;
   }
 
-  .req-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 18px;
-    color: var(--ink-2);
-    line-height: 1.55;
-  }
-
-  .req-list li::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--brand-light);
-    margin-top: 9px;
-    flex-shrink: 0;
-  }
-
-  /* ===== Sidebar (sticky contact) ===== */
+  /* ===== Sidebar ===== */
   .detail-side {
     position: sticky;
     top: 110px;
@@ -963,14 +808,9 @@
     align-items: start;
   }
 
-  .footer-col {
-    min-width: 0;
-  }
+  .footer-col { min-width: 0; }
 
-  .footer-brand .logo {
-    color: white;
-    margin-bottom: 20px;
-  }
+  .footer-brand .logo { color: white; margin-bottom: 20px; }
 
   .footer-brand p {
     font-size: 18px;
@@ -1044,29 +884,163 @@
     header { padding: 10px 16px; width: calc(100% - 24px); top: 12px; }
     .sub-hero { padding: 130px 0 50px; }
     .page-tabs-section { padding: 28px 0; }
-    .page-tabs { width: 100%; justify-content: space-between; }
-    .page-tabs a { padding: 9px 14px; font-size: 18px; }
-    .req-grid { grid-template-columns: 1fr; }
+    .page-tabs { width: 100%; justify-content: flex-start; }
+    .page-tabs a { padding: 9px 14px; font-size: 15px; }
     .intro-card { padding: 24px 22px; }
-    .diagram-wrap { margin-bottom: 80px; }
-    .petal-text { font-size: 18px; }
+    .info-row, .info-row.single { grid-template-columns: 120px 1fr; }
+    .info-row { display: block; }
+    .info-label { padding: 12px 16px; font-size: 14px; }
+    .info-value { padding: 12px 16px; font-size: 15px; }
+    .strength-grid { grid-template-columns: 1fr; }
     .cta-box { padding: 60px 28px; border-radius: 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; }
   }
 
-  @media (max-width: 480px) {
-    .diagram { max-width: 360px; }
-    .petal { width: 38%; }
-    .petal-1 { top: 2%;    left: 2%; }
-    .petal-2 { top: 2%;    right: 2%; }
-    .petal-3 { bottom: 2%; left: 2%; }
-    .petal-4 { bottom: 2%; right: 2%; }
+  /* Finance */
+  .credit-banner {
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+    border-radius: var(--radius);
+    padding: 48px;
+    color: white;
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
   }
+  .credit-banner::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    top: -150px; right: -100px;
+  }
+  .credit-info { position: relative; z-index: 1; }
+  .credit-eyebrow {
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.2em; opacity: 0.85;
+    margin-bottom: 12px;
+  }
+  .credit-info h3 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800; letter-spacing: -0.03em;
+    margin-bottom: 14px; line-height: 1.25;
+  }
+  .credit-info p {
+    font-size: 15px; line-height: 1.65; opacity: 0.85;
+  }
+  .credit-grade {
+    position: relative; z-index: 1;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 32px 24px;
+    backdrop-filter: blur(6px);
+  }
+  .credit-grade .grade-label {
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.18em; opacity: 0.7;
+    margin-bottom: 12px;
+  }
+  .credit-grade .grade-value {
+    font-size: 72px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .credit-grade .grade-meta {
+    font-size: 13px; opacity: 0.7;
+  }
+  /* Revenue chart */
+  .chart-card {
+    background: linear-gradient(180deg, var(--white) 0%, #fafbfd 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px;
+    margin-bottom: 60px;
+  }
+  .chart-head {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .chart-head h3 {
+    font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
+  }
+  .chart-head .chart-unit {
+    font-size: 14px; color: var(--ink-3);
+  }
+  .chart-bars {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+    align-items: end;
+    height: 260px;
+  }
+  .chart-bar {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 10px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+  .chart-bar-fill {
+    width: 100%;
+    background: linear-gradient(180deg, var(--brand-light) 0%, var(--brand) 100%);
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: height 0.5s ease;
+  }
+  .chart-bar-fill::before {
+    content: attr(data-value);
+    position: absolute;
+    top: -28px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px; font-weight: 700;
+    color: var(--brand);
+    white-space: nowrap;
+  }
+  .chart-bar-label {
+    font-size: 13px; font-weight: 600;
+    color: var(--ink-3);
+  }
+  /* Stability */
+  .stability-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .stability-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+  .stability-card .stab-label {
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--brand);
+    margin-bottom: 10px;
+  }
+  .stability-card .stab-value {
+    font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .stability-card p { font-size: 14px; color: var(--ink-3); line-height: 1.55; }
+  @media (max-width: 720px) {
+    .credit-banner { grid-template-columns: 1fr; padding: 32px 28px; }
+    .stability-grid { grid-template-columns: 1fr; }
+    .chart-bars { gap: 8px; height: 200px; }
+  }
+
 </style>
 </head>
 <body>
 
-<!-- ===== Header (identical to landing) ===== -->
+<!-- ===== Header ===== -->
 <header>
   <div class="header-inner">
     <a href="index.html" class="logo">
@@ -1075,25 +1049,27 @@
     </a>
     <nav>
       <ul>
-        <!-- 01. 회사소개 -->
+        <!-- 01. 회사소개 — active -->
         <li class="has-submenu">
-          <button class="nav-trigger">회사소개</button>
+          <a href="company_detail_overview.html" class="nav-trigger is-active">회사소개</a>
           <div class="dropdown">
-            <a href="#"><span class="dot"></span>CMT 소개</a>
-            <a href="#"><span class="dot"></span>비전 · 미션</a>
-            <a href="#"><span class="dot"></span>연혁</a>
-            <a href="#"><span class="dot"></span>조직 및 인력</a>
-            <a href="#"><span class="dot"></span>인증 및 자격</a>
-            <a href="#"><span class="dot"></span>재무 및 신용</a>
-            <a href="#"><span class="dot"></span>전국/해외 네트워크</a>
-            <a href="#"><span class="dot"></span>파트너 및 고객</a>
-            <a href="#"><span class="dot"></span>오시는 길</a>
+            <a href="company_detail_overview.html"><span class="dot"></span>CMT 소개</a>
+            <a href="company_detail_vision.html"><span class="dot"></span>비전 · 미션</a>
+            <a href="company_detail_ci.html"><span class="dot"></span>CI</a>
+            <a href="company_detail_history.html"><span class="dot"></span>연혁</a>
+            <a href="company_detail_organization.html"><span class="dot"></span>조직 및 인력</a>
+            <a href="company_detail_recruit.html"><span class="dot"></span>인력채용</a>
+            <a href="company_detail_certification.html"><span class="dot"></span>인증 및 자격</a>
+            <a href="company_detail_finance.html"><span class="dot"></span>재무 및 신용</a>
+            <a href="company_detail_network.html"><span class="dot"></span>전국/해외 네트워크</a>
+            <a href="company_detail_partners.html"><span class="dot"></span>파트너 및 고객</a>
+            <a href="company_detail_location.html"><span class="dot"></span>오시는 길</a>
           </div>
         </li>
 
-        <!-- 02. 보안관제 — active -->
+        <!-- 02. 보안관제 -->
         <li class="has-submenu">
-          <a href="services_detail_securityoperationcenter.html" class="nav-trigger is-active">보안관제</a>
+          <a href="services_detail_securityoperationcenter.html" class="nav-trigger">보안관제</a>
           <div class="dropdown">
             <a href="services_detail_securityoperationcenter.html"><span class="dot"></span>서비스 개요</a>
             <a href="services_detail_soc_cmteyes.html"><span class="dot"></span>CMT EYES</a>
@@ -1101,7 +1077,7 @@
             <a href="services_detail_soc_scope.html"><span class="dot"></span>관제 서비스 범위</a>
             <a href="services_detail_soc_products.html"><span class="dot"></span>관제 상품</a>
             <a href="services_detail_soc_aisoc.html"><span class="dot"></span>AI-SOC</a>
-            <a href="services_detail_soc_sla.html" class="is-active"><span class="dot"></span>서비스 SLA</a>
+            <a href="services_detail_soc_sla.html"><span class="dot"></span>서비스 SLA</a>
           </div>
         </li>
 
@@ -1188,7 +1164,7 @@
   </div>
 </header>
 
-<!-- ===== Sub Hero ===== -->
+<!-- ===== Sub Hero (회사소개 카테고리 전체 공통) ===== -->
 <section class="sub-hero">
   <div class="container">
     <div class="sub-hero-inner">
@@ -1198,30 +1174,34 @@
           <span>Home</span>
         </span>
         <span class="sep">/</span>
-        <span class="current">보안 관제</span>
+        <span class="current">회사소개</span>
       </div>
 
       <div class="sub-hero-head">
         <div>
-          <h1>보안 관제</h1>
-          <p class="lead">통합관제·보안시스템 임대·장애대응·취약점 점검까지, CMT EYES 플랫폼 기반 24x365 아웃소싱 보안 서비스를 제공합니다.</p>
+          <h1>회사<span class="accent">소개</span></h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Page Tabs (body top, left-aligned) ===== -->
+<!-- ===== Page Tabs (회사소개 카테고리 전체 공통) ===== -->
 <section class="page-tabs-section">
   <div class="container">
-    <nav class="page-tabs" aria-label="보안관제 페이지 탭">
-      <a href="services_detail_securityoperationcenter.html">서비스 개요</a>
-      <a href="services_detail_soc_cmteyes.html">CMT EYES</a>
-      <a href="services_detail_soc_methodology.html">관제 방법론</a>
-      <a href="services_detail_soc_scope.html">관제 서비스 범위</a>
-      <a href="services_detail_soc_products.html">관제 상품</a>
-      <a href="services_detail_soc_aisoc.html">AI-SOC</a>
-      <a href="services_detail_soc_sla.html" class="active">서비스 SLA</a>
+    <nav class="page-tabs" aria-label="회사소개 페이지 탭">
+      <a href="company_detail_overview.html">CMT 소개</a>
+      <a href="company_detail_vision.html">비전 · 미션</a>
+      <a href="company_detail_ci.html">CI</a>
+      <a href="company_detail_history.html">연혁</a>
+      <a href="company_detail_organization.html">조직 및 인력</a>
+      <a href="company_detail_recruit.html">인력채용</a>
+      <a href="company_detail_certification.html">인증 및 자격</a>
+      <a href="company_detail_finance.html" class="active">재무 및 신용</a>
+      <a href="company_detail_network.html">전국/해외 네트워크</a>
+      <a href="company_detail_partners.html">파트너 및 고객</a>
+      <a href="company_detail_location.html">오시는 길</a>
     </nav>
   </div>
 </section>
@@ -1234,85 +1214,92 @@
       <!-- Main column -->
       <div class="detail-content">
 
+        <!-- Intro -->
         <div class="intro-card">
-          <p>CMT 보안관제는 <span class="em">24x365 모니터링·장애접수·대응 이력관리·보고 체계</span>를 통해 약속된 서비스 수준을 제공합니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>
+            CMT는 <span class="em">신용평가 A0 등급</span>의 안정적 재무구조를 유지하며,
+            지속 가능한 성장과 고객사와의 장기 파트너십을 위한 견고한 재무 기반을 갖추고 있습니다.
+          </p>
         </div>
 
-        <div class="block-head">
-          <div class="block-eyebrow">SLA SCOPE</div>
-          <h2 class="block-title">서비스 수준 <span class="accent">관리 항목</span></h2>
+        <!-- Credit -->
+        <div class="credit-banner">
+          <div class="credit-info">
+            <div class="credit-eyebrow">CREDIT RATING</div>
+            <h3>안정적 재무구조와<br>높은 신용평가 등급</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div class="credit-grade">
+            <div class="grade-label">CREDIT GRADE</div>
+            <div class="grade-value">A0</div>
+            <div class="grade-meta">기업신용평가</div>
+          </div>
         </div>
 
-        <div class="req-grid">
-          <div class="req-card">
-            <div class="req-head">
-              <div class="req-ic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-              </div>
-              <div class="req-text-wrap">
-                <span class="req-tag">MONITORING</span>
-                <h3>24x365 모니터링</h3>
-              </div>
-            </div>
-            <ul class="req-list">
-              <li>Lorem ipsum dolor sit amet</li>
-              <li>Consectetur adipiscing elit</li>
-              <li>Sed do eiusmod tempor</li>
-              <li>Incididunt ut labore et dolore</li>
-            </ul>
+        <!-- Revenue Chart -->
+        <div class="block-head" style="text-align:left;">
+          <div class="block-eyebrow">REVENUE</div>
+          <h2 class="block-title">매출 <span class="accent">추이</span></h2>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-head">
+            <h3>최근 6개년 매출 추이</h3>
+            <div class="chart-unit">단위: 억원 (Lorem ipsum 더미)</div>
           </div>
-          <div class="req-card">
-            <div class="req-head">
-              <div class="req-ic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-              </div>
-              <div class="req-text-wrap">
-                <span class="req-tag">INCIDENT</span>
-                <h3>장애접수 · 대응</h3>
-              </div>
+          <div class="chart-bars">
+            <div class="chart-bar">
+              <div class="chart-bar-fill" style="height:50%;" data-value="210"></div>
+              <div class="chart-bar-label">2018</div>
             </div>
-            <ul class="req-list">
-              <li>Magna aliqua ut enim ad</li>
-              <li>Minim veniam quis nostrud</li>
-              <li>Exercitation ullamco laboris</li>
-              <li>Nisi ut aliquip ex ea commodo</li>
-            </ul>
-          </div>
-          <div class="req-card">
-            <div class="req-head">
-              <div class="req-ic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-              </div>
-              <div class="req-text-wrap">
-                <span class="req-tag">HISTORY</span>
-                <h3>대응 이력 관리</h3>
-              </div>
+            <div class="chart-bar">
+              <div class="chart-bar-fill" style="height:62%;" data-value="265"></div>
+              <div class="chart-bar-label">2019</div>
             </div>
-            <ul class="req-list">
-              <li>Consequat duis aute irure</li>
-              <li>Dolor in reprehenderit in</li>
-              <li>Voluptate velit esse cillum</li>
-              <li>Dolore eu fugiat nulla pariatur</li>
-            </ul>
-          </div>
-          <div class="req-card">
-            <div class="req-head">
-              <div class="req-ic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-              </div>
-              <div class="req-text-wrap">
-                <span class="req-tag">REPORT</span>
-                <h3>보고 체계</h3>
-              </div>
+            <div class="chart-bar">
+              <div class="chart-bar-fill" style="height:70%;" data-value="298"></div>
+              <div class="chart-bar-label">2020</div>
             </div>
-            <ul class="req-list">
-              <li>Excepteur sint occaecat</li>
-              <li>Cupidatat non proident sunt</li>
-              <li>In culpa qui officia deserunt</li>
-              <li>Mollit anim id est laborum</li>
-            </ul>
+            <div class="chart-bar">
+              <div class="chart-bar-fill" style="height:78%;" data-value="335"></div>
+              <div class="chart-bar-label">2021</div>
+            </div>
+            <div class="chart-bar">
+              <div class="chart-bar-fill" style="height:88%;" data-value="378"></div>
+              <div class="chart-bar-label">2022</div>
+            </div>
+            <div class="chart-bar">
+              <div class="chart-bar-fill" style="height:96%;" data-value="412"></div>
+              <div class="chart-bar-label">2023</div>
+            </div>
           </div>
         </div>
+
+        <!-- Stability -->
+        <div class="block-head" style="text-align:left;">
+          <div class="block-eyebrow">FINANCIAL STABILITY</div>
+          <h2 class="block-title">재무 <span class="accent">안정성</span></h2>
+        </div>
+
+        <div class="stability-grid">
+          <div class="stability-card">
+            <div class="stab-label">CREDIT</div>
+            <div class="stab-value">A0 등급</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="stability-card">
+            <div class="stab-label">GROWTH</div>
+            <div class="stab-value">연평균 15%+</div>
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+          <div class="stability-card">
+            <div class="stab-label">PARTNERSHIP</div>
+            <div class="stab-value">15년+</div>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          </div>
+        </div>
+
+      </div>
 
       </div>
 
@@ -1320,11 +1307,11 @@
       <aside class="detail-side">
         <div class="side-card">
           <div class="side-card-ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><rect x="9" y="9" width="2" height="2"/><rect x="9" y="13" width="2" height="2"/><rect x="9" y="17" width="2" height="2"/></svg>
           </div>
-          <div class="side-card-eyebrow">CMT EYES · 보안관제 플랫폼</div>
-          <div class="side-card-title">보안 관제</div>
-          <div class="side-card-desc">자체 관제 플랫폼 기반<br>24x365 통합 보안관제</div>
+          <div class="side-card-eyebrow">ABOUT CMT · COMPANY</div>
+          <div class="side-card-title">회사소개</div>
+          <div class="side-card-desc">신뢰와 역량을 증명하는<br>토탈 정보통신 전문기업</div>
         </div>
 
         <div class="side-list">
@@ -1368,7 +1355,23 @@
   </div>
 </section>
 
-<!-- ===== Footer (identical to landing) ===== -->
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-content">
+        <h2>CMT와 함께<br>안전한 디지털 인프라를 만들어가세요</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn-white">문의하기</a>
+          <a href="#" class="btn-outline">회사소개서 다운로드</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
 <footer>
   <div class="container">
     <div class="footer-top">
@@ -1387,11 +1390,11 @@
       <div class="footer-col">
         <h4>회사소개</h4>
         <ul>
-          <li><a href="#">CMT 소개</a></li>
-          <li><a href="#">비전 · 미션</a></li>
-          <li><a href="#">연혁</a></li>
-          <li><a href="#">인증 및 자격</a></li>
-          <li><a href="#">오시는 길</a></li>
+          <li><a href="company_detail_overview.html">CMT 소개</a></li>
+          <li><a href="company_detail_vision.html">비전 · 미션</a></li>
+          <li><a href="company_detail_history.html">연혁</a></li>
+          <li><a href="company_detail_certification.html">인증 및 자격</a></li>
+          <li><a href="company_detail_location.html">오시는 길</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1408,9 +1411,9 @@
         <h4>보안관제</h4>
         <ul>
           <li><a href="services_detail_securityoperationcenter.html">서비스 개요</a></li>
-          <li><a href="#">CMT EYES</a></li>
-          <li><a href="#">관제 상품</a></li>
-          <li><a href="#">AI-SOC</a></li>
+          <li><a href="services_detail_soc_cmteyes.html">CMT EYES</a></li>
+          <li><a href="services_detail_soc_products.html">관제 상품</a></li>
+          <li><a href="services_detail_soc_aisoc.html">AI-SOC</a></li>
           <li><a href="#">보안관제 문의</a></li>
         </ul>
       </div>
